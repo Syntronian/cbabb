@@ -31,21 +31,28 @@
     
     <div class="content-padded">
         <div class="pull-left">
-            <img src="http://buybuddie.com.au/Content/bb/img/bb-gray.gif" alt="0">
+            @if (!String.IsNullOrEmpty(Model.ScoreGraphic))
+            {
+                <img src="http://buybuddie.com.au/@Model.ScoreGraphic" alt="@Model.RiskScore" />
+            }
+            else
+            {
+                <img src="http://buybuddie.com.au/Content/bb/img/bb-gray.gif" alt="0" />
+            }
         </div>
         <div class="pull-left" style="margin-left: 40px;">
-            <h3>
+            <h2>
                 Issues
-            </h3>
+            </h2>
             @foreach (var issue in Model.Issues)
             {
                 if (!string.IsNullOrEmpty(issue.Message))
                 { <p>@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Message))</p> }
             }
 
-            <h3 style="margin-top: 40px;">
+            <h2 style="margin-top: 40px;">
                 Solutions
-            </h3>
+            </h2>
             @foreach (var issue in Model.Issues)
             {
                 if (!string.IsNullOrEmpty(issue.Solution))
