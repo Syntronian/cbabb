@@ -127,18 +127,28 @@
         <h5>
             BuyBuddie Choices
         </h5>
-        @foreach (var item in Model.Alternatives)
-        {
-            var desc = CBA.Helpers.HTML.StripTags(item.Description);
-            if (desc != null) { desc = desc.Trim(); desc = desc.Length > 140 ? desc.Substring(0, 140) + "..." : desc; }
-            var title = item.Title;
-            if (string.IsNullOrEmpty(title)) { title = item.Url; }
-            <p style="margin-bottom: 20px;">
-                <a href="@item.Url" target="_blank">@title</a>
-                <br />
-                @desc
-            </p>
-        }
+        <table>
+            @foreach (var item in Model.Alternatives)
+            {
+                var desc = CBA.Helpers.HTML.StripTags(item.Description);
+                if (desc != null) { desc = desc.Trim(); desc = desc.Length > 140 ? desc.Substring(0, 140) + "..." : desc; }
+                var title = item.Title;
+                if (string.IsNullOrEmpty(title)) { title = item.Url; }
+
+                <tr style="vertical-align: top;">
+                    <td style="width: 60px;">
+                        <span class="media-object pull-left icon icon-check" style="color: #b7b7b7;"></span>
+                    </td>
+                    <td>
+                        <p style="margin-bottom: 40px;">
+                            <a href="@item.Url" target="_blank">@title</a>
+                            <br />
+                            @desc
+                        </p>
+                    </td>
+                </tr>
+            }
+        </table>
     </div>
 
 </div>
@@ -149,18 +159,28 @@
         <h5>
             Marketplace
         </h5>
-        @foreach (var item in Model.MarketplaceItems)
-        {
-            var desc = CBA.Helpers.HTML.StripTags(item.Description);
-            if (desc != null) { desc = desc.Trim(); desc = desc.Length > 140 ? desc.Substring(0, 140) + "..." : desc; }
-            var title = item.Title;
-            if (string.IsNullOrEmpty(title)) { title = item.Url; }
-            <p style="margin-bottom: 20px;">
-                <a href="@item.Url" target="_blank">@title</a>
-                <br />
-                @desc
-            </p>
-        }
+        <table>
+            @foreach (var item in Model.MarketplaceItems)
+            {
+                var desc = CBA.Helpers.HTML.StripTags(item.Description);
+                if (desc != null) { desc = desc.Trim(); desc = desc.Length > 140 ? desc.Substring(0, 140) + "..." : desc; }
+                var title = item.Title;
+                if (string.IsNullOrEmpty(title)) { title = item.Url; }
+
+                <tr style="vertical-align: top;">
+                    <td style="width: 60px;">
+                        <span class="media-object pull-left icon icon-more" style="color: #b7b7b7;"></span>
+                    </td>
+                    <td>
+                        <p style="margin-bottom: 40px;">
+                            <a href="@item.Url" target="_blank">@title</a>
+                            <br />
+                            @desc
+                        </p>
+                    </td>
+                </tr>
+            }
+        </table>
     </div>
 
 </div>
