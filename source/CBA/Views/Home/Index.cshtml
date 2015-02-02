@@ -25,7 +25,13 @@
     <p class="content-padded" style="text-align: center;">Travel companion</p>
 
     @{ Html.BeginForm("Index", "Home", FormMethod.Get, new { style = "margin-top: 25%;", @class = "content-padded" }); }
-        <input type="search" name="q" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome">
-        @*<button class="btn btn-primary btn-block"><span class="icon icon-check"></span></button>*@
+    @*<input type="search" name="q" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome">
+        <button class="btn btn-primary btn-block"><span class="icon icon-check"></span></button>*@
+    <div class="input-group" style="margin-top: 20px;">
+        <input type="search" name="q" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome" autofocus required>
+        <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary"><span class="icon icon-check"></span></button>
+        </span>
+    </div>
     @{ Html.EndForm(); }
 </div>
