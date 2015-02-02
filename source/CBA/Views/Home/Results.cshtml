@@ -1,19 +1,19 @@
-﻿@{
+﻿@model CBA.Models.BuyBuddie.Search
+@{
     ViewBag.Title = "CBA Travel Companion";
 }
 
 <header class="bar bar-nav">
+    @{ Html.BeginForm("Index", "Home", FormMethod.Get); }
+    <button class="btn btn-link btn-nav pull-left">
+        <span class="icon icon-left-nav"></span> &nbsp;
+    </button>
+    @{ Html.EndForm(); }
     <h1 class="title"><img src="@Url.Content("~/assets/img/cba-logo.png")" /></h1>
 </header>
 
-<div class="content">
-    <div class="content-padded">
-
-    </div>
-</div>
-
 <nav class="bar bar-tab">
-    <a class="tab-item active" href="@Url.Action("Index")">
+    <a class="tab-item" href="@Url.Action("Index")">
         <span class="icon icon-home"></span>
         <span class="tab-label">Home</span>
     </a>
@@ -22,3 +22,29 @@
         <span class="tab-label">Settings</span>
     </a>
 </nav>
+
+<div class="content">
+    @if (ViewBag.Error != null)
+    {
+        <p>ViewBag.Error</p>
+    }
+
+    <h3 class="content-padded">
+        Issues
+    </h3>
+    @foreach (var issue in Model.Issues)
+    {
+        if (!string.IsNullOrEmpty(issue.Message))
+        { <p class="content-padded">@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Message))</p> }
+    }
+
+    <h3 class="content-padded" style="margin-top: 40px;">
+        Solutions
+    </h3>
+    @foreach (var issue in Model.Issues)
+    {
+        if (!string.IsNullOrEmpty(issue.Solution))
+        { <p class="content-padded">@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Solution))</p> }
+    }
+
+</div>

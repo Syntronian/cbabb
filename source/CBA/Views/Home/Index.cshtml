@@ -6,19 +6,8 @@
     <h1 class="title"><img src="@Url.Content("~/assets/img/cba-logo.png")"/></h1>
 </header>
 
-<div class="content">
-    <div class="content-padded">
-        
-        @{ Html.BeginForm("Index", "Home", FormMethod.Post, new { style = "margin-top: 25%;" }); }
-            <input type="search" placeholder="Search" name="search">
-            <button class="btn btn-primary btn-block"><span class="icon icon-check"></span></button>
-        @{ Html.EndForm(); }
-
-    </div>
-</div>
-
 <nav class="bar bar-tab">
-    <a class="tab-item active" href="@Url.Action("Index")">
+    <a class="tab-item" href="@Url.Action("Index")">
         <span class="icon icon-home"></span>
         <span class="tab-label">Home</span>
     </a>
@@ -27,3 +16,12 @@
         <span class="tab-label">Settings</span>
     </a>
 </nav>
+
+<div class="content">
+    <p class="content-padded" style="text-align: center;">Travel companion</p>
+
+    @{ Html.BeginForm("Index", "Home", FormMethod.Post, new { style = "margin-top: 25%;" }); }
+        <input type="search" placeholder="Search" name="search">
+        <button class="btn btn-primary btn-block"><span class="icon icon-check"></span></button>
+    @{ Html.EndForm(); }
+</div>
