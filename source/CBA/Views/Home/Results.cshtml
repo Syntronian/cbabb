@@ -3,7 +3,7 @@
     ViewBag.Title = "CBA Travel Companion";
 }
 
-<header class="bar bar-nav">
+<header id="results-nav" class="bar bar-nav">
     @{ Html.BeginForm("Index", "Home", FormMethod.Get); }
     <button class="btn btn-link btn-nav pull-left">
         <span class="icon icon-left-nav"></span> &nbsp;
@@ -23,7 +23,7 @@
     </a>
 </nav>
 
-<div class="content">
+<div id="results-content" class="content">
     @if (ViewBag.Error != null)
     {
         <p>ViewBag.Error</p>
@@ -43,26 +43,144 @@
                     }
                 </td>
                 <td>
-                    <h4>
-                        Issues
-                    </h4>
-                    @foreach (var issue in Model.Issues)
+                    @if (Model.RiskScore == 0 && !Model.Issues.Any())
                     {
-                        if (!string.IsNullOrEmpty(issue.Message))
-                        { <p>@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Message))</p> }
+                        <p>No issues have been detected.</p>
+                        <div style="height: 20px;"></div>
+                    }
+                    else if (Model.RiskScore > 0 && !string.IsNullOrEmpty(Model.AlertSummary))
+                    {
+                        <h4>
+                            Overall risk score is: @Model.RiskScore
+                        </h4>
+                        <p>
+                            @Html.Raw(CBA.Helpers.HTML.WithActiveLinks(Model.AlertSummary))
+                        </p>
                     }
 
-                    <h4 style="margin-top: 40px;">
-                        Solutions
-                    </h4>
-                    @foreach (var issue in Model.Issues)
+                    @if (Model.Issues.Any(i => !string.IsNullOrEmpty(i.Message)))
                     {
-                        if (!string.IsNullOrEmpty(issue.Solution))
-                        { <p>@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Solution))</p> }
+                        <h5>
+                            Issues
+                        </h5>
+                        foreach (var issue in Model.Issues.Where(i => !string.IsNullOrEmpty(i.Message)))
+                        {
+                            <p>@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Message))</p>
+                        }
+                        <div style="height: 20px;"></div>
+                    }
+                    @if (Model.Issues.Any(i => !string.IsNullOrEmpty(i.Solution)))
+                    {
+                        <h5>
+                            Solutions
+                        </h5>
+                        foreach (var issue in Model.Issues.Where(i => !string.IsNullOrEmpty(i.Solution)))
+                        {
+                            <p>@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Solution))</p>
+                        }
                     }
                 </td>
             </tr>
         </table>
     </div>
 
+    <div class="content-padded">
+        <h5>
+            Alternatives
+        </h5>
+        <ul class="table-view">
+            <li class="table-view-cell media">
+                <a class="navigate-right" href="javascript:;" onclick="showbbchoices();">
+                    <span class="media-object pull-left icon icon-check"></span>
+                    <div class="media-body">
+                        BuyBuddie Choices
+                    </div>
+                </a>
+            </li>
+            <li class="table-view-cell media">
+                <a class="navigate-right" href="javascript:;" onclick="showmarketplace();">
+                    <span class="media-object pull-left icon icon-more"></span>
+                    <div class="media-body">
+                        Marketplace
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
 </div>
+
+<header id="alt-nav" class="bar bar-nav" style="display: none;">
+    <button class="btn btn-link btn-nav pull-left" onclick="showresults();">
+        <span class="icon icon-left-nav"></span> &nbsp;
+    </button>
+    <h1 class="title"><img src="@Url.Content("~/assets/img/cba-logo.png")" /></h1>
+</header>
+
+<div id="bbchoices-content" class="content" style="display: none;">
+
+    <div class="content-padded">
+        <h5>
+            BuyBuddie Choices
+        </h5>
+        @foreach (var item in Model.Alternatives)
+        {
+            var desc = CBA.Helpers.HTML.StripTags(item.Description);
+            if (desc != null) { desc = desc.Trim(); desc = desc.Length > 140 ? desc.Substring(0, 140) + "..." : desc; }
+            var title = item.Title;
+            if (string.IsNullOrEmpty(title)) { title = item.Url; }
+            <p style="margin-bottom: 20px;">
+                <a href="@item.Url" target="_blank">@title</a>
+                <br />
+                @desc
+            </p>
+        }
+    </div>
+
+</div>
+
+<div id="marketplace-content" class="content" style="display: none;">
+
+    <div class="content-padded">
+        <h5>
+            Marketplace
+        </h5>
+        @foreach (var item in Model.MarketplaceItems)
+        {
+            var desc = CBA.Helpers.HTML.StripTags(item.Description);
+            if (desc != null) { desc = desc.Trim(); desc = desc.Length > 140 ? desc.Substring(0, 140) + "..." : desc; }
+            var title = item.Title;
+            if (string.IsNullOrEmpty(title)) { title = item.Url; }
+            <p style="margin-bottom: 20px;">
+                <a href="@item.Url" target="_blank">@title</a>
+                <br />
+                @desc
+            </p>
+        }
+    </div>
+
+</div>
+
+<script>
+    function showresults() {
+        $('#alt-nav').hide();
+        $('#bbchoices-content').hide();
+        $('#marketplace-content').hide();
+        $('#results-nav').show();
+        $('#results-content').show();
+    }
+
+    function showbbchoices() {
+        $('#results-nav').hide();
+        $('#results-content').hide();
+        $('#alt-nav').show();
+        $('#bbchoices-content').show();
+    }
+
+    function showmarketplace() {
+        $('#results-nav').hide();
+        $('#results-content').hide();
+        $('#alt-nav').show();
+        $('#marketplace-content').show();
+    }
+</script>
