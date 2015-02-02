@@ -28,23 +28,32 @@
     {
         <p>ViewBag.Error</p>
     }
+    
+    <div class="content-padded">
+        <div class="pull-left">
+            <img src="http://buybuddie.com.au/Content/bb/img/bb-gray.gif" alt="0">
+        </div>
+        <div class="pull-left" style="margin-left: 40px;">
+            <h3>
+                Issues
+            </h3>
+            @foreach (var issue in Model.Issues)
+            {
+                if (!string.IsNullOrEmpty(issue.Message))
+                { <p>@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Message))</p> }
+            }
 
-    <h3 class="content-padded">
-        Issues
-    </h3>
-    @foreach (var issue in Model.Issues)
-    {
-        if (!string.IsNullOrEmpty(issue.Message))
-        { <p class="content-padded">@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Message))</p> }
-    }
+            <h3 style="margin-top: 40px;">
+                Solutions
+            </h3>
+            @foreach (var issue in Model.Issues)
+            {
+                if (!string.IsNullOrEmpty(issue.Solution))
+                { <p>@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Solution))</p> }
+            }
+        </div>
+    </div>
 
-    <h3 class="content-padded" style="margin-top: 40px;">
-        Solutions
-    </h3>
-    @foreach (var issue in Model.Issues)
-    {
-        if (!string.IsNullOrEmpty(issue.Solution))
-        { <p class="content-padded">@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Solution))</p> }
-    }
+
 
 </div>
