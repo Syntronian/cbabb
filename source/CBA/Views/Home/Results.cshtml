@@ -3,16 +3,11 @@
 }
 
 <header class="bar bar-nav">
-    <h1 class="title"><img src="@Url.Content("~/assets/img/cba-logo.png")"/></h1>
+    <h1 class="title"><img src="@Url.Content("~/assets/img/cba-logo.png")" /></h1>
 </header>
 
 <div class="content">
     <div class="content-padded">
-        
-        @{ Html.BeginForm("Index", "Home", FormMethod.Post, new { style = "margin-top: 25%;" }); }
-            <input type="search" placeholder="Search" name="search">
-            <button class="btn btn-primary btn-block"><span class="icon icon-check"></span></button>
-        @{ Html.EndForm(); }
 
     </div>
 </div>
