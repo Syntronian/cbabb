@@ -20,8 +20,8 @@
 <div class="content">
     <p class="content-padded" style="text-align: center;">Travel companion</p>
 
-    @{ Html.BeginForm("Index", "Home", FormMethod.Post, new { style = "margin-top: 25%;", @class = "content-padded" }); }
-        <input type="search" placeholder="Search" name="search">
+    @{ Html.BeginForm("Index", "Home", FormMethod.Get, new { style = "margin-top: 25%;", @class = "content-padded" }); }
+        <input type="search" placeholder="Search" name="q">
         <button class="btn btn-primary btn-block"><span class="icon icon-check"></span></button>
     @{ Html.EndForm(); }
 </div>

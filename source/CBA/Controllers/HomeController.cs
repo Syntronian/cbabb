@@ -12,15 +12,9 @@ namespace CBA.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string q)
         {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Index(string search)
-        {
-            if (string.IsNullOrEmpty(search))
+            if (string.IsNullOrEmpty(q))
                 return View();
 
             var model = new Search();
@@ -32,7 +26,7 @@ namespace CBA.Controllers
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    var task = client.GetAsync("api/v1/search?q=" + search).ContinueWith((taskwithresponse) =>
+                    var task = client.GetAsync("api/v1/search?q=" + q).ContinueWith((taskwithresponse) =>
                     {
                         var response = taskwithresponse.Result;
                         var jsonString = response.Content.ReadAsStringAsync();
