@@ -28,39 +28,41 @@
     {
         <p>ViewBag.Error</p>
     }
-    
-    <div class="content-padded" style="overflow: auto;">
-        <div class="pull-left">
-            @if (!String.IsNullOrEmpty(Model.ScoreGraphic))
-            {
-                <img src="http://buybuddie.com.au/@Model.ScoreGraphic" alt="@Model.RiskScore" style="width: 40px;" />
-            }
-            else
-            {
-                <img src="http://buybuddie.com.au/Content/bb/img/bb-gray.gif" alt="0" style="width: 40px;" />
-            }
-        </div>
-        <div class="pull-left" style="margin-left: 20px; width: 240px;">
-            <h4>
-                Issues
-            </h4>
-            @foreach (var issue in Model.Issues)
-            {
-                if (!string.IsNullOrEmpty(issue.Message))
-                { <p>@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Message))</p> }
-            }
 
-            <h4 style="margin-top: 40px;">
-                Solutions
-            </h4>
-            @foreach (var issue in Model.Issues)
-            {
-                if (!string.IsNullOrEmpty(issue.Solution))
-                { <p>@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Solution))</p> }
-            }
-        </div>
+    <div class="content-padded">
+        <table>
+            <tr style="vertical-align: top;">
+                <td style="width: 60px;">
+                    @if (!String.IsNullOrEmpty(Model.ScoreGraphic))
+                    {
+                        <img src="http://buybuddie.com.au/@Model.ScoreGraphic" alt="@Model.RiskScore" style="width: 40px;" />
+                    }
+                    else
+                    {
+                        <img src="http://buybuddie.com.au/Content/bb/img/bb-gray.gif" alt="0" style="width: 40px;" />
+                    }
+                </td>
+                <td>
+                    <h4>
+                        Issues
+                    </h4>
+                    @foreach (var issue in Model.Issues)
+                    {
+                        if (!string.IsNullOrEmpty(issue.Message))
+                        { <p>@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Message))</p> }
+                    }
+
+                    <h4 style="margin-top: 40px;">
+                        Solutions
+                    </h4>
+                    @foreach (var issue in Model.Issues)
+                    {
+                        if (!string.IsNullOrEmpty(issue.Solution))
+                        { <p>@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Solution))</p> }
+                    }
+                </td>
+            </tr>
+        </table>
     </div>
-
-
 
 </div>
