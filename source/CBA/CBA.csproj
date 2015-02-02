@@ -121,7 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\css\app.css" />
-    <Content Include="assets\img\background.jpg" />
     <Content Include="assets\img\cba-logo.png" />
     <Content Include="assets\plugins\ratchet\css\ratchet-theme-android.css" />
     <Content Include="assets\plugins\ratchet\css\ratchet-theme-android.min.css" />
