@@ -41,18 +41,18 @@
             }
         </div>
         <div class="pull-left" style="margin-left: 40px;">
-            <h2>
+            <h4>
                 Issues
-            </h2>
+            </h4>
             @foreach (var issue in Model.Issues)
             {
                 if (!string.IsNullOrEmpty(issue.Message))
                 { <p>@Html.Raw(CBA.Helpers.HTML.WithActiveLinks(issue.Message))</p> }
             }
 
-            <h2 style="margin-top: 40px;">
+            <h4 style="margin-top: 40px;">
                 Solutions
-            </h2>
+            </h4>
             @foreach (var issue in Model.Issues)
             {
                 if (!string.IsNullOrEmpty(issue.Solution))
