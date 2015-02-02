@@ -29,18 +29,18 @@
         <p>ViewBag.Error</p>
     }
     
-    <div class="content-padded">
+    <div class="content-padded" style="overflow: auto;">
         <div class="pull-left">
             @if (!String.IsNullOrEmpty(Model.ScoreGraphic))
             {
-                <img src="http://buybuddie.com.au/@Model.ScoreGraphic" alt="@Model.RiskScore" />
+                <img src="http://buybuddie.com.au/@Model.ScoreGraphic" alt="@Model.RiskScore" style="width: 40px;" />
             }
             else
             {
-                <img src="http://buybuddie.com.au/Content/bb/img/bb-gray.gif" alt="0" />
+                <img src="http://buybuddie.com.au/Content/bb/img/bb-gray.gif" alt="0" style="width: 40px;" />
             }
         </div>
-        <div class="pull-left" style="margin-left: 40px;">
+        <div class="pull-left" style="margin-left: 20px; width: 240px;">
             <h4>
                 Issues
             </h4>
