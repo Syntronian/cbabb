@@ -12,6 +12,10 @@
         <span class="tab-label">Home</span>
     </a>
     <a class="tab-item" href="#">
+        <i class="fa fa-heart fa-nav"></i><br/>
+        <span class="tab-label" style="display: block; font-size: 11px;">Share</span>
+    </a>
+    <a class="tab-item" href="#">
         <span class="icon icon-gear"></span>
         <span class="tab-label">Settings</span>
     </a>
@@ -21,7 +25,7 @@
     <p class="content-padded" style="text-align: center;">Travel companion</p>
 
     @{ Html.BeginForm("Index", "Home", FormMethod.Get, new { style = "margin-top: 25%;", @class = "content-padded" }); }
-        <input type="search" placeholder="Search" name="q">
-        <button class="btn btn-primary btn-block"><span class="icon icon-check"></span></button>
+        <input type="search" name="q" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome">
+        @*<button class="btn btn-primary btn-block"><span class="icon icon-check"></span></button>*@
     @{ Html.EndForm(); }
 </div>
