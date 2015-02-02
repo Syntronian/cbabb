@@ -20,6 +20,9 @@ namespace CBA.Controllers
         [HttpPost]
         public ActionResult Index(string search)
         {
+            if (string.IsNullOrEmpty(search))
+                return View();
+
             var model = new Search();
             try
             {
