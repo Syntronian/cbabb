@@ -32,39 +32,57 @@
     {
         <p>ViewBag.Error</p>
     }
-
+    
+    @{
+        var mascotPrompt = (Model.RiskScore == 0 && !Model.Issues.Any()) || (Model.RiskScore > 0);
+    }
     <div class="content-padded">
         <table>
+            @if (mascotPrompt)
+            {
+                <tr style="vertical-align: top;">
+                    <td style="width: 60px;">
+                        @if (!String.IsNullOrEmpty(Model.ScoreGraphic))
+                        {
+                            <img src="http://buybuddie.com.au/@Model.ScoreGraphic" alt="@Model.RiskScore" style="width: 40px;" />
+                        }
+                        else
+                        {
+                            <img src="http://buybuddie.com.au/Content/bb/img/bb-gray.gif" alt="0" style="width: 40px;" />
+                        }
+                    </td>
+                    <td>
+                        <h5 style="margin: 0px; padding: 0px;">Transaction analysis for: @ViewBag.Query</h5>
+                        @if (Model.RiskScore == 0 && !Model.Issues.Any())
+                        {
+                            <p>No issues have been detected.</p>
+                            <div style="height: 20px;"></div>
+                        }
+                        else if (Model.RiskScore > 0)
+                        {
+                            <h5>
+                                Your overall risk score is: @Model.RiskScore
+                            </h5>
+                            <p>
+                                @Html.Raw(CBA.Helpers.HTML.WithActiveLinks(Model.AlertSummary))
+                            </p>
+                        }
+                    </td>
+                </tr>
+            }
             <tr style="vertical-align: top;">
                 <td style="width: 60px;">
-                    @if (!String.IsNullOrEmpty(Model.ScoreGraphic))
+                    @if (!mascotPrompt)
                     {
-                        <img src="http://buybuddie.com.au/@Model.ScoreGraphic" alt="@Model.RiskScore" style="width: 40px;" />
+                        if (!String.IsNullOrEmpty(Model.ScoreGraphic))
+                        {
+                            <img src="http://buybuddie.com.au/@Model.ScoreGraphic" alt="@Model.RiskScore" style="width: 40px;" />
+                        }
+                        else
+                        {
+                            <img src="http://buybuddie.com.au/Content/bb/img/bb-gray.gif" alt="0" style="width: 40px;" />
+                        }
                     }
-                    else
-                    {
-                        <img src="http://buybuddie.com.au/Content/bb/img/bb-gray.gif" alt="0" style="width: 40px;" />
-                    }
-                </td>
-                <td>
-                    @if (Model.RiskScore == 0 && !Model.Issues.Any())
-                    {
-                        <p>No issues have been detected.</p>
-                        <div style="height: 20px;"></div>
-                    }
-                    else if (Model.RiskScore > 0)
-                    {
-                        <h5>
-                            Your overall risk score is: @Model.RiskScore
-                        </h5>
-                        <p>
-                            @Html.Raw(CBA.Helpers.HTML.WithActiveLinks(Model.AlertSummary))
-                        </p>
-                    }
-                </td>
-            </tr>
-            <tr style="vertical-align: top;">
-                <td style="width: 60px;">
                 </td>
                 <td>
                     @if (Model.Issues.Any(i => !string.IsNullOrEmpty(i.Message)))

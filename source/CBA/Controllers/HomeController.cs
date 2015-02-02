@@ -17,6 +17,7 @@ namespace CBA.Controllers
             if (string.IsNullOrEmpty(q))
                 return View();
 
+            ViewBag.Query = q;
             var model = new Search();
             try
             {
