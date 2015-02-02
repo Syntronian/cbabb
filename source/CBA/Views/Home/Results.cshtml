@@ -52,16 +52,21 @@
                         <p>No issues have been detected.</p>
                         <div style="height: 20px;"></div>
                     }
-                    else if (Model.RiskScore > 0 && !string.IsNullOrEmpty(Model.AlertSummary))
+                    else if (Model.RiskScore > 0)
                     {
-                        <h4>
-                            Overall risk score is: @Model.RiskScore
-                        </h4>
+                        <h5>
+                            Your overall risk score is: @Model.RiskScore
+                        </h5>
                         <p>
                             @Html.Raw(CBA.Helpers.HTML.WithActiveLinks(Model.AlertSummary))
                         </p>
                     }
-
+                </td>
+            </tr>
+            <tr style="vertical-align: top;">
+                <td style="width: 60px;">
+                </td>
+                <td>
                     @if (Model.Issues.Any(i => !string.IsNullOrEmpty(i.Message)))
                     {
                         <h5>
