@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "CBA Travel Companion";
+}
+
+<header class="bar bar-nav">
+    @{ Html.BeginForm("Index", "Home", FormMethod.Get); }
+    <button class="btn btn-link btn-nav pull-left">
+        <span class="icon icon-left-nav"></span> &nbsp;
+    </button>
+    @{ Html.EndForm(); }
+    <h1 class="title"><img src="@Url.Content("~/assets/img/cba-logo.png")" /></h1>
+</header>
+
+<nav class="bar bar-tab">
+    <a class="tab-item" href="@Url.Action("Index")">
+        <span class="icon icon-home"></span>
+        <span class="tab-label">Home</span>
+    </a>
+    <a class="tab-item" href="#">
+        <i class="fa fa-heart fa-nav"></i><br />
+        <span class="tab-label" style="display: block; font-size: 11px;">Share</span>
+    </a>
+    <a class="tab-item" href="#">
+        <span class="icon icon-gear"></span>
+        <span class="tab-label">Settings</span>
+    </a>
+</nav>
+
+<div id="main" class="content">
+    <h3 class="content-padded" style="text-align: center;">Settings</h3>
+    
+    <ul class="table-view">
+        <li class="table-view-cell">
+            Security
+            <div class="toggle active">
+                <div class="toggle-handle"></div>
+            </div>
+        </li>
+        <li class="table-view-cell">
+            Privacy
+            <div class="toggle active">
+                <div class="toggle-handle"></div>
+            </div>
+        </li>
+        <li class="table-view-cell">
+            Ethical
+            <div class="toggle">
+                <div class="toggle-handle"></div>
+            </div>
+        </li>
+        <li class="table-view-cell">
+            Environment
+            <div class="toggle">
+                <div class="toggle-handle"></div>
+            </div>
+        </li>
+        <li class="table-view-cell">
+            Deals & price
+            <div class="toggle">
+                <div class="toggle-handle"></div>
+            </div>
+        </li>
+        <li class="table-view-cell">
+            Local
+            <div class="toggle">
+                <div class="toggle-handle"></div>
+            </div>
+        </li>
+        <li class="table-view-cell">
+            Child Safety
+            <div class="toggle active">
+                <div class="toggle-handle"></div>
+            </div>
+        </li>
+        <li class="table-view-cell">
+            Do good business
+            <div class="toggle">
+                <div class="toggle-handle"></div>
+            </div>
+        </li>
+        <li class="table-view-cell">
+            Reliability
+            <div class="toggle">
+                <div class="toggle-handle"></div>
+            </div>
+        </li>
+        <li class="table-view-cell">
+            Local business
+            <div class="toggle active">
+                <div class="toggle-handle"></div>
+            </div>
+        </li>
+    </ul>
+</div>

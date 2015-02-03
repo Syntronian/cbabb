@@ -12,7 +12,13 @@ namespace CBA
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            
+
+            routes.MapRoute(
+                name: "settings",
+                url: "settings",
+                defaults: new { controller = "Home", action = "Settings" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

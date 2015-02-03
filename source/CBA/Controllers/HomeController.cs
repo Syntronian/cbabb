@@ -43,5 +43,10 @@ namespace CBA.Controllers
             }
             return View("Results", model);
         }
+
+        public ActionResult Settings()
+        {
+            return View();
+        }
     }
 }
