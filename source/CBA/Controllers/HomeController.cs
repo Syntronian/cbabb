@@ -48,5 +48,10 @@ namespace CBA.Controllers
         {
             return View();
         }
+
+        public ActionResult Share()
+        {
+            return View();
+        }
     }
 }

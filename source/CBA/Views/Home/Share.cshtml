@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "CBA Travel Companion";
+}
+
+<header class="bar bar-nav">
+    @{ Html.BeginForm("Index", "Home", FormMethod.Get); }
+    <button class="btn btn-link btn-nav pull-left">
+        <span class="icon icon-left-nav"></span> &nbsp;
+    </button>
+    @{ Html.EndForm(); }
+    <h1 class="title"><img src="@Url.Content("~/assets/img/cba-logo.png")" /></h1>
+</header>
+
+<nav class="bar bar-tab">
+    <a class="tab-item" href="@Url.Action("Index")">
+        <span class="icon icon-home"></span>
+        <span class="tab-label">Home</span>
+    </a>
+    <a class="tab-item" href="@Url.RouteUrl("share")">
+        <i class="fa fa-heart fa-nav"></i><br />
+        <span class="tab-label" style="display: block; font-size: 11px;">Share</span>
+    </a>
+    <a class="tab-item" href="@Url.RouteUrl("settings")">
+        <span class="icon icon-gear"></span>
+        <span class="tab-label">Settings</span>
+    </a>
+</nav>
+
+<div id="main" class="content">
+    <h3 class="content-padded" style="text-align: center;">Share</h3>
+    
+    <div style="margin-top: 25%;">
+        <button class="btn btn-positive btn-block">The app</button>
+        <div style="height: 20px;"></div>
+        <button class="btn btn-primary btn-block">Your values</button>
+    </div>
+</div>
