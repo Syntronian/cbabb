@@ -42,7 +42,7 @@
             {
                 <tr style="vertical-align: top;">
                     <td style="width: 60px;">
-                        @if (!String.IsNullOrEmpty(Model.ScoreGraphic))
+                        @if (!String.IsNullOrEmpty(Model.ScoreGraphic) && Model.RiskScore > -1)
                         {
                             <img src="http://buybuddie.com.au/@Model.ScoreGraphic" alt="@Model.RiskScore" style="width: 40px;" />
                         }

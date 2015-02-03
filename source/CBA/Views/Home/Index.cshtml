@@ -27,12 +27,12 @@
 </nav>
 
 <div id="main" class="content">
-    <p class="content-padded" style="text-align: center;">Travel companion</p>
+    <p class="content-padded" style="text-align: center;">Purchase companion</p>
 
     @{ Html.BeginForm("Index", "Home", FormMethod.Get, new { style = "margin-top: 25%;", @class = "content-padded" }); }
     @*<input type="search" name="q" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome">
         <button class="btn btn-primary btn-block"><span class="icon icon-check"></span></button>*@
-    <div class="input-group" style="margin-top: 20px;">
+    <div class="input-group searchbox">
         <input type="text" name="q" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome; border: none;" required>
         <span class="input-group-btn">
             <button type="submit" class="btn btn-primary"><span class="icon icon-check"></span></button>
